@@ -1626,68 +1626,198 @@ footer {
     }
 }
 
-/* Sub-tabs styling */
-.sub-tabs {
+/* Projects Gallery Section */
+.projects-gallery {
+    position: relative;
+    overflow: hidden;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--medium-gray);
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.projects-filter {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding-bottom: 1rem;
+    margin-bottom: 40px;
+    gap: 10px;
 }
 
-.sub-tab-btn {
+.filter-btn {
     background: transparent;
     border: none;
-    padding: 0.5rem 1.5rem;
-    margin: 0 0.5rem;
-    font-size: 1rem;
+    padding: 8px 20px;
+    font-size: 16px;
+    color: var(--medium-gray);
     cursor: pointer;
-    position: relative;
-    color: #333;
     transition: all 0.3s ease;
+    position: relative;
+    font-weight: 500;
+    border-radius: 30px;
 }
 
-.sub-tab-btn::after {
+.filter-btn::after {
     content: '';
     position: absolute;
-    bottom: -5px;
-    left: 0;
+    bottom: -2px;
+    left: 50%;
     width: 0;
     height: 2px;
-    background-color: #dd0000;
+    background-color: var(--primary-red);
+    transform: translateX(-50%);
     transition: width 0.3s ease;
 }
 
-.sub-tab-btn.active {
-    font-weight: bold;
-    color: #dd0000;
+.filter-btn.active {
+    color: var(--primary-red);
+    background-color: rgba(221, 0, 0, 0.05);
 }
 
-.sub-tab-btn.active::after {
+.filter-btn.active::after {
+    width: 30px;
+}
+
+.filter-btn:hover {
+    color: var(--primary-red);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.project-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    height: 280px;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+}
+
+.project-image {
+    height: 100%;
     width: 100%;
+    position: relative;
 }
 
-.sub-tab-btn:hover {
-    color: #dd0000;
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
 }
 
-.sub-content {
-    display: none;
+.project-card:hover .project-image img {
+    transform: scale(1.1);
 }
 
-.sub-content.active {
-    display: block;
-    animation: fadeIn 0.5s ease forwards;
+.project-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+    color: var(--white);
+    display: flex;
+    align-items: flex-end;
+    padding: 25px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-details {
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-details {
+    transform: translateY(0);
+}
+
+.project-details h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.project-details p {
+    font-size: 14px;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.project-location {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+.location-dot {
+    margin-right: 5px;
+    font-style: normal;
+}
+
+.projects-cta {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Responsive Adjustments for Projects Section */
+@media (max-width: 992px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
-    .sub-tabs {
-        flex-direction: column;
-        align-items: center;
+    .section-subtitle {
+        font-size: 16px;
+        padding: 0 15px;
     }
     
-    .sub-tab-btn {
-        margin: 0.25rem 0;
+    .projects-filter {
+        gap: 8px;
+    }
+    
+    .filter-btn {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-details h3 {
+        font-size: 20px;
+    }
+    
+    .project-details p {
+        font-size: 13px;
     }
 }
